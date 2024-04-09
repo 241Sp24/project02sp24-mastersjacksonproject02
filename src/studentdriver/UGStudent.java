@@ -27,7 +27,7 @@ public class UGStudent extends StudentFees {
     }
 
     public double getPayableAmount() {
-
+        return scholarshipAmount - (coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE() + ADDITIONAL_FEE);
     }
 
     public String toString() {

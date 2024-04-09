@@ -28,17 +28,15 @@ public class StudentDriver {
         //graduate student loop
         for (int i = 0; i < nogS; i++) {
             String[] nl = input.nextLine().split(",", 6);
-            students[i + nougS] = new GraduateStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Boolean.parseBoolean(nl[3])), (nl[4]), (Integer.parseInt(nl[5])));
+            students[i + nougS] = new GraduateStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Boolean.parseBoolean(nl[4])), (nl[5]), (Integer.parseInt(nl[3])));
         }
-        for (int i = 0; i < nooS; i++){
+        for (int i = 0; i < nooS; i++) {
             String[] nl = input.nextLine().split(",", 6);
-            //students[i + nougS + nougS] = new OnlineStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Integer.parseInt(nl[5])));
+            students[i + nougS + nougS] = new OnlineStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Integer.parseInt(nl[5])));
         }
-        System.out.println("**********Undergraduate students list**********");
-
-        System.out.println("***********Graduate students list**********");
-
-        System.out.println("**********Online students list**********");
+        for (StudentFees a : students) {
+            System.out.println(a);
+        }
 
     }
 }
