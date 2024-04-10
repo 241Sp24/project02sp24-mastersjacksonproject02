@@ -23,7 +23,8 @@ else {
 }
 @Override
 public String toString(){
-    return (super.toString() + String.format("No of months: %d\n" + "Payable Amount:  %.2f\n", noOfMonths,  getPayableAmount() + "\n"));
+    
+    return super.toString() + String.format("No of months: %d\n" + "Payable Amount:  %.2f\n", noOfMonths,  getPayableAmount() + "\n");
 //        return ("Student name: " + super.getStudentName()  + "\nStudent id: " + super.getStudentID() + "\nEnrolled: " + this.isEnrolled() + "\nNo of months: " + noOfMonths + "\nPayable Amount: " + this.getPayableAmount());
 }
 }

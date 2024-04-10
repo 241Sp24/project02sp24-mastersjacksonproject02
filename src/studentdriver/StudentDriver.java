@@ -56,7 +56,7 @@ public class StudentDriver {
         System.out.println("**********Online students list************");
         int onlineStartIndex = graduateStartIndex + nogS;
         int count = 0;
-        for (int i = 0; i < nooS; i++) {
+        for (int i = nougS + nogS; i < students.length; i++) {
             if(input.hasNext()){
                 String[] nl = input.next().split(",", 4);
                 students[count] = new OnlineStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Integer.parseInt(nl[3])));
@@ -69,24 +69,81 @@ public class StudentDriver {
             System.out.println(a);
         }
         //if instance of , check enrolled, check scholorship count.
-        for(StudentFees student : students){
-            if (student instanceof UGStudent){
-                UGStudent ugStudent = (UGStudent) student; 
-                System.out.println("Student Name: " + ugStudent.getStudentName());
-                System.out.println("Enrolled: " + ugStudent.isEnrolled());
-                System.out.println("Scholorship count: " + ugStudent.getScholarshipAmount());
-            }
-            else if(student instanceof GraduateStudent){
-                GraduateStudent gradStudent = (GraduateStudent) student; 
-                System.out.println("Student name: " + gradStudent.getStudentName());
-                System.out.println("Enrolled: " + gradStudent.isEnrolled());
-            }
-            else if(student instanceof OnlineStudent){
-                OnlineStudent onlineStud = (OnlineStudent) student; 
-                System.out.println("Student name" + onlineStud.getStudentName());
-                System.out.println("Enrolled: " + onlineStud.isEnrolled());
-            }
-            }
+//        for(StudentFees student : students){
+  //          if (student instanceof UGStudent){
+    //            UGStudent ugStudent = (UGStudent) student; 
+      //          System.out.println("Student Name: " + ugStudent.getStudentName());
+        //        System.out.println("Enrolled: " + ugStudent.isEnrolled());
+          //      System.out.println("Scholorship count: " + ugStudent.getScholarshipAmount());
+            //}
+//            else if(student instanceof GraduateStudent){
+  //              GraduateStudent gradStudent = (GraduateStudent) student; 
+    //            System.out.println("Student name: " + gradStudent.getStudentName());
+      //          System.out.println("Enrolled: " + gradStudent.isEnrolled());
+        //    }
+          //  else if(student instanceof OnlineStudent){
+            //    OnlineStudent onlineStud = (OnlineStudent) student; 
+              //  System.out.println("Student name" + onlineStud.getStudentName());
+                //System.out.println("Enrolled: " + onlineStud.isEnrolled());
+            //}
+            //}
+        double totalUndergraduateFees = 0;
+        int totalUndergraduateScholarships = 0;
+        int totalUndergraduateCourses = 0;
+        for (int i = 0; i < nougS; i++) {
+            totalUndergraduateFees += students[i].getPayableAmount();
+            if (students[i] instanceof UGStudent) {
+                UGStudent ugStudent = (UGStudent) students[i];
+                totalUndergraduateScholarships += ugStudent.getScholarshipCount();
+                totalUndergraduateCourses += ugStudent.getCoursesEnrolled();
+    }
+}
+        double avgUndergraduateFees = totalUndergraduateFees / nougS;
+
+// Calculate average student fee, graduate assistantship count, and total number of courses for graduate students
+        double totalGraduateFees = 0;
+        int totalGraduateAssistantships = 0;
+        int totalGraduateCourses = 0;
+        for (int i = nougS; i < nougS + nogS; i++) {
+            totalGraduateFees += students[i].getPayableAmount();
+                if (students[i] instanceof GraduateStudent) {
+                    GraduateStudent gradStudent = (GraduateStudent) students[i];
+                    if (gradStudent.isGraduateAssistant()) {
+                        totalGraduateAssistantships++;
+                    }
+                    totalGraduateCourses += gradStudent.getCoursesEnrolled();
+    }
+}
+        double avgGraduateFees = totalGraduateFees / nogS;
+
+// Calculate average student fee and total number of courses for online students
+        double totalOnlineFees = 0;
+        int totalOnlineCourses = 0;
+        for (int i = nougS + nogS; i < students.length; i++) {
+            totalOnlineFees += students[i].getPayableAmount();
+            if (students[i] instanceof OnlineStudent) {
+                //5
+                OnlineStudent onlineStudent = (OnlineStudent) students[i];
+                //totalOnlineCourses += onlineStudent.getCoursesEnrolled();
+    }
+}
+        double avgOnlineFees = totalOnlineFees / nooS;
+        
+        System.out.println("**********Undergraduate Students details**********");
+        System.out.println("Average Students fee: " + avgUndergraduateFees);
+        System.out.println("Scholarship count: " + totalUndergraduateScholarships);
+        System.out.println("Total number of courses: " + totalUndergraduateCourses);
+
+        System.out.println("**********Graduate Students details**********");
+                
+        System.out.println("Average Students fee: " + avgGraduateFees);
+        System.out.println("Graduate Assistantship count: " + totalGraduateAssistantships);
+        System.out.println("Total number of courses: " + totalGraduateCourses);
+
+        System.out.println("**********Online Students details**********");
+        System.out.println("Average Students fee: " + avgOnlineFees);
+        System.out.println("Total number of courses: " + totalOnlineCourses);
+
         }
         
    }
