@@ -56,7 +56,7 @@ public class StudentDriver {
         System.out.println("**********Online students list************");
         int onlineStartIndex = graduateStartIndex + nogS;
         int count = 0;
-        for (int i = nougS + nogS; i < students.length; i++) {
+        for (int i = 0; i < nooS; i++) {
             if(input.hasNext()){
                 String[] nl = input.next().split(",", 4);
                 students[count] = new OnlineStudent((nl[1]), (Integer.parseInt(nl[0])), (Boolean.parseBoolean(nl[2])), (Integer.parseInt(nl[3])));
@@ -119,14 +119,12 @@ public class StudentDriver {
 // Calculate average student fee and total number of courses for online students
         double totalOnlineFees = 0;
         int totalOnlineCourses = 0;
+        
         for (int i = nougS + nogS; i < students.length; i++) {
             totalOnlineFees += students[i].getPayableAmount();
-            if (students[i] instanceof OnlineStudent) {
-                //5
-                OnlineStudent onlineStudent = (OnlineStudent) students[i];
-                //totalOnlineCourses += onlineStudent.getCoursesEnrolled();
-    }
-}
+            
+        }
+        
         double avgOnlineFees = totalOnlineFees / nooS;
         
         System.out.println("**********Undergraduate Students details**********");
@@ -142,7 +140,7 @@ public class StudentDriver {
 
         System.out.println("**********Online Students details**********");
         System.out.println("Average Students fee: " + avgOnlineFees);
-        System.out.println("Total number of courses: " + totalOnlineCourses);
+        
 
         }
         
