@@ -37,19 +37,19 @@ public class GraduateStudent extends StudentFees {
 //                totalFee -= tuitionFee;
 //            } else if ("half".equalsIgnoreCase(graduateAssistantType)) {
 //                totalFee -= tuitionFee / 2;
+            double tuition = coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE();
         if (isGraduateAssistant) {
-            if (graduateAssistantType.equalsIgnoreCase("true")) {
-                double n = 0;
-            } else if (graduateAssistantType.equalsIgnoreCase("false")) {
-                double n = 0.5;
-            } else {
-                double n = 1.0;
+            if (graduateAssistantType.equalsIgnoreCase("full")) {
+                tuition = 0;
+            } else if (graduateAssistantType.equalsIgnoreCase("half")) {
+                tuition = tuition / 2;
+            
             }
         }
-        return n * (coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE() + ADDITIONAL_FEES);
+        return tuition + ADDITIONAL_FEES;
     }
 
     public String toString() {
-        return ("Student name" + super.getStudentName() + "\nStudent id: " + super.getStudentID() + "\nEnrolled: " + this.isEnrolled() + "\nGraduate assistant: " + this.isGraduateAssistant() + "Graduate assistant type: " + this.graduateAssistantType + "\nCourses enrolled: " + coursesEnrolled + "\nPayable Amount: " + this.getPayableAmount());
+        return ("Student name: " + super.getStudentName() + "\nStudent id: " + super.getStudentID() + "\nEnrolled: " + this.isEnrolled() + "\nGraduate assistant: " + this.isGraduateAssistant() + "\nGraduate assistant type: " + this.graduateAssistantType + "\nCourses enrolled: " + coursesEnrolled + "\nPayable Amount: " + this.getPayableAmount() + "\n");
     }
 }

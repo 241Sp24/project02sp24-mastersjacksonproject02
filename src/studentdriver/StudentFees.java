@@ -46,11 +46,11 @@ public abstract class StudentFees {
         this.isEnrolled = isEnrolled;
     }
 
-    public double getPayableAmount() {
-
-    }
+    public abstract double getPayableAmount();
+        
+    
 
     public String toString() {
-
+        return String.format("Student Name: %s\nStudent ID: %d\nEnrolled: %b\nPayable Amount:  %.2f\n", studentName, studentID, isEnrolled , getPayableAmount());
     }
 }

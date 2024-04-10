@@ -25,13 +25,21 @@ public class UGStudent extends StudentFees {
     public int getCoursesEnrolled() {
         return coursesEnrolled;
     }
-
+    
     public double getPayableAmount() {
-        return scholarshipAmount - (coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE() + ADDITIONAL_FEE);
+        if(isEnrolled()){
+            double totalCourseFees = coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE();
+            double payableAmount = scholarshipAmount - (totalCourseFees + ADDITIONAL_FEE);
+            return Math.max(payableAmount, 0); // Ensure payable amount is non-negative
+            //return scholarshipAmount - (coursesEnrolled * getCREDIT_PER_COURSE() * getPER_CREDIT_FEE() + ADDITIONAL_FEE);
+        }
+        else{
+            return 0;
+        }
     }
 
     public String toString() {
-        return ("Student name" + super.getStudentName() + "\nStudent id: " + super.getStudentID() + "\nEnrolled: " + this.isEnrolled() + "\nScholarship" + hasScholarship + "\nScholarship amount: " + scholarshipAmount + "\nCourses enrolled: " + coursesEnrolled + "\nPayable Amount: ");
+        return ("Student name: " + super.getStudentName() + "\nStudent id: " + super.getStudentID() + "\nEnrolled: " + this.isEnrolled() + "\nScholarship: " + hasScholarship + "\nScholarship amount: " + scholarshipAmount + "\nCourses enrolled: " + coursesEnrolled + "\nPayable Amount: " + );
     }
 
 }
